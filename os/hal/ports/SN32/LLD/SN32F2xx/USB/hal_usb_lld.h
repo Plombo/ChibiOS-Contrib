@@ -391,7 +391,7 @@ struct USBDriver {
   do {                                                                      \
     SN32_USB->SGCTL = (mskBUS_DRVEN|mskBUS_K_STATE);                        \
     uint32_t loops = OSAL_MS2I(SN32_USB_HOST_WAKEUP_DURATION) *             \
-                     (48000000 / CH_CFG_ST_FREQUENCY / 9);                  \
+                     (SN32_HCLK / CH_CFG_ST_FREQUENCY / 9);                  \
     for (uint32_t i = 0; i < loops; i++) __NOP();                           \
     SN32_USB->SGCTL &= ~mskBUS_DRVEN;                                       \
   } while (false)
